@@ -95,6 +95,11 @@ public class MenuView extends javax.swing.JFrame {
         TabelaJogo.setMinimumSize(new java.awt.Dimension(2147483647, 192));
         TabelaJogo.setPreferredSize(new java.awt.Dimension(450, 193));
         TabelaJogo.setShowGrid(true);
+        TabelaJogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelaJogoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TabelaJogo);
 
         btnListar.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -236,10 +241,30 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemCadastrarJogoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        ExcluirJogoView tela = new ExcluirJogoView();
-            tela.setVisible(true);
-            dispose();
+//        ExcluirJogoView tela = new ExcluirJogoView();;;;
+//            tela.setVisible(true);
+//            dispose();
+        try{
+            String nomeJogo = TabelaJogo.getValueAt(TabelaJogo.getSelectedRow(), 0).toString();
+            Connection conexao = new Conexao().getConnection();
+            JogoDAO jogoDao = new JogoDAO(conexao);
+            JOptionPane.showMessageDialog(null,nomeJogo );
+            
+            if(jogoDao.excluir(nomeJogo) == 1){
+                JOptionPane.showMessageDialog(null,"Jogo excluído com sucesso!" );
+//                view.getTxtNomeJogo().setText("");
+            }else{
+                JOptionPane.showMessageDialog(null,"Esse jogo não existe" );
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir esse jogo! ");
+            Logger.getLogger(ExcluirUsuarioView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void TabelaJogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaJogoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TabelaJogoMouseClicked
 
     /**
      * @param args the command line arguments

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import view.ExcluirJogoView;
 import view.FormCadastroView;
 import view.MenuView;
 
@@ -24,10 +25,8 @@ public class MenuViewController {
     private MenuView view;
     
     public MenuViewController(MenuView view){
-        
         this.view = view;
     }
-    
     
     public void lista(){
         
@@ -44,6 +43,6 @@ public class MenuViewController {
         }
     }
     
-    }
+}
     
 
