@@ -27,31 +27,31 @@ public class CadastroJogoController {
     }
     
     public void salvarJogo() throws SQLException{
-        
-        String nomeJogo = view.getTxtNomeJogo().getText();
-        String generoJogo = view.getGenero();
-        int anoLancamento = Integer.parseInt(view.getTxtAnoLancamento().getText());
-        String distribuidoraJogo = view.getDistribuidora();
-        String desenvolvedoraJogo = view.getDesenvolvedora();
-        float progressoJogo = Float.parseFloat(view.getTxtProgresso().getText());
-        
-        Jogo jog = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
-        
-        try {
-            Connection conexao = new Conexao().getConnection();
+        try{
+           String nomeJogo = view.getTxtNomeJogo().getText();
+            String generoJogo = view.getGenero();
+            int anoLancamento = Integer.parseInt(view.getTxtAnoLancamento().getText());
+            String distribuidoraJogo = view.getDistribuidora();
+            String desenvolvedoraJogo = view.getDesenvolvedora();
+            float progressoJogo = Float.parseFloat(view.getTxtProgresso().getText());
+
+            Jogo jog = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
+
+            //validação dos campos
+            if((nomeJogo.isEmpty()) || (generoJogo.isEmpty()) || (distribuidoraJogo.isEmpty()) || (desenvolvedoraJogo.isEmpty())){
+                JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+            }
+            else{
+                Connection conexao = new Conexao().getConnection();           
+                JogoDAO jogoDao = new JogoDAO(conexao);            
+                jogoDao.insert(jog);
+          
+            JOptionPane.showMessageDialog(null, "Jogo salvo com sucesso");
+            }
             
-            JogoDAO jogoDao = new JogoDAO(conexao);
-            
-            jogoDao.insert(jog);
-            
-            
-            
-            JOptionPane.showMessageDialog(null, "Usuario salvo com sucesso");
-        
-        
-        } catch (SQLException ex) {
+        }catch(SQLException ex){
             Logger.getLogger(CadastroJogoView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }        
   }
 
