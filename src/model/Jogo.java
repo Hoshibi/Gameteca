@@ -10,13 +10,13 @@ package model;
  */
 public class Jogo {
        
-    private int idJogo;
-    private String nomeJogo;
-    private String generoJogo;
-    private int anoLancamentoJogo;
-    private String desenvolvedoraJogo;
-    private String distribuidoraJogo;
-    private float progressoJogo;
+    int idJogo;
+    String nomeJogo;
+    String generoJogo;
+    int anoLancamentoJogo;
+    String desenvolvedoraJogo;
+    String distribuidoraJogo;
+    float progressoJogo;
 
     public Jogo(int idJogo, String nomeJogo, String generoJogo, int anoLancamentoJogo, String desenvolvedoraJogo, String distribuidoraJogo, float progressoJogo) {
         
@@ -38,9 +38,11 @@ public class Jogo {
         this.distribuidoraJogo = distribuidoraJogo;
         this.progressoJogo = progressoJogo;
         
+    }   
+
+    public Jogo() {
+        
     }
-    
-    
 
     public int getIdJogo() {
         return idJogo;

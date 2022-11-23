@@ -12,21 +12,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Jogo;
-import view.CadastroJogoView;
+import view.EditarJogoView;
 
 /**
  *
- * @author Pancaldi
+ * @author tayna
  */
-public class CadastroJogoController {
+public class EditarJogoController {
     
-    private CadastroJogoView view;
+    private EditarJogoView view;
     
-    public CadastroJogoController(CadastroJogoView view){
+    public EditarJogoController(EditarJogoView view){
         this.view = view;
     }
     
-    public void salvarJogo() throws SQLException{
+    public void editarJogo() throws SQLException{
         try{
             String nomeJogo = view.getTxtNomeJogo().getText();
             String generoJogo = view.getGenero();
@@ -36,22 +36,17 @@ public class CadastroJogoController {
             float progressoJogo = Float.parseFloat(view.getTxtProgresso().getText());
 
             Jogo jog = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
-
-            //validação dos campos
-            if((nomeJogo.isEmpty()) || (generoJogo.isEmpty()) || (distribuidoraJogo.isEmpty()) || (desenvolvedoraJogo.isEmpty())){
-                JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-            }
-            else{
-                //Connection conexao = new Conexao().getConnection();           
-                JogoDAO jogoDao = new JogoDAO();            
-                jogoDao.insert(jog);
-          
-            JOptionPane.showMessageDialog(null, "Jogo salvo com sucesso");
-            }
+            //Jogo jog = new Jogo();
             
+            //Connection conexao = new Conexao().getConnection();           
+            //JogoDAO jogoDao = new JogoDAO(conexao);  
+            JogoDAO jogoDao = new JogoDAO();
+            jogoDao.editar(jog);
+          
+            JOptionPane.showMessageDialog(null, "Jogo atualizado com sucesso");
+                       
         }catch(SQLException ex){
-            Logger.getLogger(CadastroJogoView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditarJogoView.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }        
-  }
-
+    }
+}

@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Jogo;
 
+
 /**
  *
  * @author otávio
@@ -24,6 +25,34 @@ import model.Jogo;
 public class MenuView extends javax.swing.JFrame {
 
     private final MenuViewController controller;
+    
+    
+    public void listaJogo(){
+        DefaultTableModel modelo = (DefaultTableModel) TabelaJogo.getModel();
+            modelo.setNumRows(0);
+        
+            try{
+                //Connection conexao = new Conexao().getConnection();
+                //JogoDAO jogoDao = new JogoDAO(conexao);
+                JogoDAO jogoDao = new JogoDAO();
+                ArrayList<Jogo> lista = jogoDao.listarTodosJogos();
+                
+                for(Jogo j: lista){
+                    modelo.addRow(new Object[]{
+                        j.getNomeJogo(),
+                        j.getGeneroJogo(),
+                        j.getAnoLancamentoJogo(),
+                        j.getDesenvolvedoraJogo(),
+                        j.getDistribuidoraJogo(),
+                        j.getProgressoJogo()
+                        
+                    });
+                }
+                               
+            }catch(SQLException ex) {
+            Logger.getLogger(CadastroJogoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public MenuView() {
         initComponents();
@@ -43,7 +72,7 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaJogo = new javax.swing.JTable();
-        btnListar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -55,6 +84,12 @@ public class MenuView extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu de Jogos");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         TabelaJogo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,16 +113,9 @@ public class MenuView extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         TabelaJogo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -102,11 +130,11 @@ public class MenuView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TabelaJogo);
 
-        btnListar.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        btnListar.setText("Listar");
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -167,7 +195,7 @@ public class MenuView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35))
         );
@@ -178,9 +206,10 @@ public class MenuView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnListar)
-                        .addGap(66, 66, 66)
+                        .addGap(57, 57, 57)
                         .addComponent(btnCadastrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar)
                         .addGap(18, 18, 18)
                         .addComponent(btnExcluir)))
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -189,35 +218,20 @@ public class MenuView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-            
-            DefaultTableModel modelo = (DefaultTableModel) TabelaJogo.getModel();
-            modelo.setNumRows(0);
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        Jogo jogo = new Jogo(); //o mais certo seria assim
+        //Jogo jogo = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
         
-            try{
-                Connection conexao = new Conexao().getConnection();
-                JogoDAO jogoDao = new JogoDAO(conexao);
-                ArrayList<Jogo> lista = jogoDao.listarTodosJogos();
-                
-                for(Jogo j: lista){
-                    modelo.addRow(new Object[]{
-                        j.getNomeJogo(),
-                        j.getGeneroJogo(),
-                        j.getAnoLancamentoJogo(),
-                        j.getDesenvolvedoraJogo(),
-                        j.getDistribuidoraJogo(),
-                        j.getProgressoJogo()
-                        
-                    });
-                }
-                
-                
-            }catch(SQLException ex) {
-            Logger.getLogger(CadastroJogoView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            
-    }//GEN-LAST:event_btnListarActionPerformed
+        EditarJogoView tela = new EditarJogoView();
+        tela.setVisible(true); // abre a tela de edição de jogos
+
+        int linha = TabelaJogo.getSelectedRow();  //pega a linha selecionada da tabela e passa para a tela de edição.
+
+        jogo.setNomeJogo(TabelaJogo.getValueAt(linha,0).toString()); //passa o nome do jogo para a tela de edição
+
+        EditarJogoView.recebeNome(jogo); 
+        this.dispose();
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
             CadastroJogoView tela = new CadastroJogoView();
@@ -241,13 +255,14 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemCadastrarJogoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-//        ExcluirJogoView tela = new ExcluirJogoView();;;;
+//        ExcluirJogoView tela = new ExcluirJogoView();
 //            tela.setVisible(true);
 //            dispose();
         try{
             String nomeJogo = TabelaJogo.getValueAt(TabelaJogo.getSelectedRow(), 0).toString();
-            Connection conexao = new Conexao().getConnection();
-            JogoDAO jogoDao = new JogoDAO(conexao);
+//            Connection conexao = new Conexao().getConnection();
+//            JogoDAO jogoDao = new JogoDAO(conexao);
+            JogoDAO jogoDao = new JogoDAO();
             JOptionPane.showMessageDialog(null,nomeJogo );
             
             if(jogoDao.excluir(nomeJogo) == 1){
@@ -265,6 +280,10 @@ public class MenuView extends javax.swing.JFrame {
     private void TabelaJogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaJogoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TabelaJogoMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        listaJogo();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -308,8 +327,8 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu MenuOpções;
     private javax.swing.JTable TabelaJogo;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JToggleButton btnExcluir;
-    private javax.swing.JButton btnListar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;

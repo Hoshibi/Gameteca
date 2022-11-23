@@ -31,8 +31,8 @@ public class MenuViewController {
     public void lista(){
         
         try {
-            Connection conexao = new Conexao().getConnection();
-            JogoDAO jogoDao = new JogoDAO(conexao);
+            //Connection conexao = new Conexao().getConnection();
+            JogoDAO jogoDao = new JogoDAO();
             jogoDao.listarTodosJogos();
             
             JOptionPane.showMessageDialog(null, "Jogos listados com sucesso");

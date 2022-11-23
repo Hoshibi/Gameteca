@@ -27,9 +27,12 @@ public class JogoDAO {
     //sql
     private static final String sqlexcluir = "DELETE FROM jogo WHERE nome_jogo = ?";    
     
-    public JogoDAO(Connection connection){
-            this.connection = connection;
-    }
+//    public JogoDAO(Connection connection){
+//            this.connection = connection;
+//    }
+      public JogoDAO() throws SQLException{
+          this.connection = new Conexao().getConnection();
+      }
     
 
     // Método Inserir    
@@ -87,7 +90,8 @@ public class JogoDAO {
             String distribuidora = resultSet.getString("distribuidora_jogo");
             Float  progresso = resultSet.getFloat("progresso_jogo");
             
-            Jogo jogocomDados = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedora, distribuidora, progresso);
+            //Jogo jogocomDados = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedora, distribuidora, progresso);
+            Jogo jogocomDados = new Jogo();
             jogo.add(jogocomDados);
         }
         
@@ -100,5 +104,49 @@ public class JogoDAO {
     return jogo;    
         
     }
-
+    //Método Editar jogos
+    public void editar(Jogo jogo){
+        String sql = "UPDATE jogo set genero_jogo=?, ano_jogo=?, desenvolvedora_jogo=?, distribuidora_jogo?, progresso_jogo=? WHERE nome_jogo=?";
+        
+        try{
+            PreparedStatement pds = connection.prepareStatement(sql);
+            
+            pds.setString(1, jogo.getGeneroJogo());
+            pds.setInt(2, jogo.getAnoLancamentoJogo());
+            pds.setString(3, jogo.getDesenvolvedoraJogo());
+            pds.setString(4, jogo.getDistribuidoraJogo());
+            pds.setFloat(5, jogo.getProgressoJogo());
+            pds.setString(6, jogo.getNomeJogo());
+            
+            pds.executeUpdate();
+            pds.close();
+            
+        }catch(SQLException ex){
+            throw new RuntimeException(ex); 
+        }
+    }
+    //Método de Pesquisar jogos
+    //Método para o botão de pesquisar na tela de EditarJogoView
+    public boolean pesquisaJogo(Jogo jogo){
+        String sql = "SELECT * from jogo WHERE nome_jogo=?";
+        
+        try{
+            PreparedStatement pst = connection.prepareStatement(sql);
+        
+            pst.setString(1, jogo.getNomeJogo());
+            ResultSet rs = pst.executeQuery(); //pesquisa e traz as informações do bd e inseri nos campos da tela de edição.
+        
+            if(rs.next()){
+                jogo.setGeneroJogo(rs.getString("genero_jogo"));
+                jogo.setAnoLancamentoJogo(rs.getInt("ano_jogo"));
+                jogo.setDesenvolvedoraJogo(rs.getString("desenvolvedora_jogo"));
+                jogo.setDistribuidoraJogo(rs.getString("distribuidora_jogo"));
+                jogo.setProgressoJogo(rs.getFloat("progresso_jogo"));
+            }
+            return true;
+        }
+        catch(SQLException ex){
+            throw new RuntimeException(ex);
+        }
+    }
 }

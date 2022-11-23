@@ -31,8 +31,8 @@ public class ExcluirJogoController {
         String nomeJogo = view.getTxtNomeJogo().getText();
         
         try {
-            Connection conexao = new Conexao().getConnection();
-            JogoDAO jogoDao = new JogoDAO(conexao);
+            //Connection conexao = new Conexao().getConnection();
+            JogoDAO jogoDao = new JogoDAO();
             
             if(jogoDao.excluir(nomeJogo) == 1){
                 JOptionPane.showMessageDialog(null,"Jogo excluído com sucesso!" );
