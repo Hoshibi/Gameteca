@@ -40,7 +40,8 @@ public class LoginController {
         
         if (existe){
             MenuView teladeMenu = new MenuView();
-            teladeMenu.setVisible(existe);        
+            teladeMenu.setVisible(existe);    
+            view.dispose();
         }else{
             JOptionPane.showMessageDialog(view, "usuario ou senha invalidos");
         }
