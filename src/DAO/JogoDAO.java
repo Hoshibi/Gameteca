@@ -90,8 +90,8 @@ public class JogoDAO {
             String distribuidora = resultSet.getString("distribuidora_jogo");
             Float  progresso = resultSet.getFloat("progresso_jogo");
             
-            //Jogo jogocomDados = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedora, distribuidora, progresso);
-            Jogo jogocomDados = new Jogo();
+            Jogo jogocomDados = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedora, distribuidora, progresso);
+//            Jogo jogocomDados = new Jogo();
             jogo.add(jogocomDados);
         }
         
@@ -104,19 +104,18 @@ public class JogoDAO {
     return jogo;    
         
     }
+    
     //Método Editar jogos
     public void editar(Jogo jogo){
-        String sql = "UPDATE jogo set genero_jogo=?, ano_jogo=?, desenvolvedora_jogo=?, distribuidora_jogo?, progresso_jogo=? WHERE nome_jogo=?";
+        String sql = "UPDATE jogo SET nome_jogo = '" + jogo.getNomeJogo() + "', genero_jogo = '" + jogo.getGeneroJogo() +"', ano_jogo = '" + jogo.getAnoLancamentoJogo() + "', desenvolvedora_jogo = '" + jogo.getDesenvolvedoraJogo() + "', distribuidora_jogo = '" + jogo.getDistribuidoraJogo() + "', progresso_jogo = '" + jogo.getProgressoJogo() + "' WHERE nome_jogo = '" + jogo.getNomeJogo() + "';" ;
+        
+        System.out.println(sql);
         
         try{
-            PreparedStatement pds = connection.prepareStatement(sql);
+            int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;
+            int concorrencia = ResultSet.CONCUR_UPDATABLE;
             
-            pds.setString(1, jogo.getGeneroJogo());
-            pds.setInt(2, jogo.getAnoLancamentoJogo());
-            pds.setString(3, jogo.getDesenvolvedoraJogo());
-            pds.setString(4, jogo.getDistribuidoraJogo());
-            pds.setFloat(5, jogo.getProgressoJogo());
-            pds.setString(6, jogo.getNomeJogo());
+            PreparedStatement pds = connection.prepareStatement(sql,tipo, concorrencia);
             
             pds.executeUpdate();
             pds.close();
@@ -125,13 +124,16 @@ public class JogoDAO {
             throw new RuntimeException(ex); 
         }
     }
+    
     //Método de Pesquisar jogos
     //Método para o botão de pesquisar na tela de EditarJogoView
     public boolean pesquisaJogo(Jogo jogo){
         String sql = "SELECT * from jogo WHERE nome_jogo=?";
         
         try{
-            PreparedStatement pst = connection.prepareStatement(sql);
+            int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;
+            int concorrencia = ResultSet.CONCUR_UPDATABLE;
+            PreparedStatement pst = connection.prepareStatement(sql,tipo, concorrencia);
         
             pst.setString(1, jogo.getNomeJogo());
             ResultSet rs = pst.executeQuery(); //pesquisa e traz as informações do bd e inseri nos campos da tela de edição.
