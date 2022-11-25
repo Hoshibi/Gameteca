@@ -40,6 +40,9 @@ public class CadastroJogoView extends javax.swing.JFrame {
         if (radioFPS.isSelected()) {
             genero = radioFPS.getText();
         }
+        if (radioOUTRO.isSelected()) {
+            genero = radioOUTRO.getText();
+        }
     }
     
     public void comboBox(){
@@ -68,6 +71,7 @@ public class CadastroJogoView extends javax.swing.JFrame {
         radioMMORPG = new javax.swing.JRadioButton();
         radioMOBA = new javax.swing.JRadioButton();
         radioRPG = new javax.swing.JRadioButton();
+        radioOUTRO = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         txtProgresso = new javax.swing.JTextField();
         boxDistribuidora = new javax.swing.JComboBox<>();
@@ -76,6 +80,7 @@ public class CadastroJogoView extends javax.swing.JFrame {
         txtAnoLancamento = new javax.swing.JTextField();
         btVoltar = new javax.swing.JButton();
         btCadastrar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -113,6 +118,8 @@ public class CadastroJogoView extends javax.swing.JFrame {
 
         radioRPG.setText("RPG");
 
+        radioOUTRO.setText("OUTRO");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -123,7 +130,8 @@ public class CadastroJogoView extends javax.swing.JFrame {
                     .addComponent(radioMMORPG)
                     .addComponent(radioFPS)
                     .addComponent(radioMOBA)
-                    .addComponent(radioRPG))
+                    .addComponent(radioRPG)
+                    .addComponent(radioOUTRO))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -135,7 +143,10 @@ public class CadastroJogoView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(radioMMORPG)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radioFPS))
+                .addComponent(radioFPS)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+                .addComponent(radioOUTRO)
+                .addContainerGap())
         );
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -147,9 +158,9 @@ public class CadastroJogoView extends javax.swing.JFrame {
             }
         });
 
-        boxDistribuidora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ubisoft", "SEGA", "NINTENDO", "Electronic Arts", "Capcom", "Square ENix", "Konami", "Sony", "Microsoft" }));
+        boxDistribuidora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ubisoft", "SEGA", "NINTENDO", "Electronic Arts", "Capcom", "Square ENix", "Konami", "Sony", "Microsoft", "Outro" }));
 
-        boxDesenvolvedora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sony", "Apple", "Microsoft", "Nintendo", "Google", "Activision Blizzard", "NetEase", "Electronic Arts", "Take-two Interactive" }));
+        boxDesenvolvedora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sony", "Apple", "Microsoft", "Nintendo", "Google", "Activision Blizzard", "NetEase", "Electronic Arts", "Take-two Interactive", "Outro" }));
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jLabel7.setText("Progresso Atual");
@@ -176,6 +187,9 @@ public class CadastroJogoView extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
+        jLabel3.setToolTipText("Este campo é referente a porcentagem do seu progresso atual neste jogo (O campo aceita apenas número)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -185,7 +199,7 @@ public class CadastroJogoView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,8 +208,13 @@ public class CadastroJogoView extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(txtAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btVoltar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btCadastrar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(55, 55, 55)
@@ -207,15 +226,12 @@ public class CadastroJogoView extends javax.swing.JFrame {
                                                 .addGap(35, 35, 35)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(boxDistribuidora, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(boxDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(boxDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel3)))
                                             .addComponent(txtProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(150, 150, 150)
-                                        .addComponent(jLabel7))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btVoltar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btCadastrar)))
+                                        .addComponent(jLabel7)))))
                         .addGap(0, 20, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -233,8 +249,7 @@ public class CadastroJogoView extends javax.swing.JFrame {
                     .addComponent(txtNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -243,11 +258,14 @@ public class CadastroJogoView extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(boxDistribuidora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addComponent(txtProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar)
                     .addComponent(btVoltar))
@@ -346,6 +364,7 @@ public class CadastroJogoView extends javax.swing.JFrame {
     private javax.swing.JButton btVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -355,6 +374,7 @@ public class CadastroJogoView extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioFPS;
     private javax.swing.JRadioButton radioMMORPG;
     private javax.swing.JRadioButton radioMOBA;
+    private javax.swing.JRadioButton radioOUTRO;
     private javax.swing.JRadioButton radioRPG;
     private javax.swing.JTextField txtAnoLancamento;
     private javax.swing.JTextField txtNomeJogo;

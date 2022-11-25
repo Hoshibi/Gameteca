@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -49,7 +49,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel2" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
@@ -61,10 +61,16 @@
                                       <Component id="txtAnoLancamento" min="-2" pref="291" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="btVoltar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btCadastrar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
@@ -76,6 +82,7 @@
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="boxDistribuidora" min="-2" pref="127" max="-2" attributes="0"/>
                                                       <Component id="boxDesenvolvedora" min="-2" pref="127" max="-2" attributes="0"/>
+                                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Component id="txtProgresso" min="-2" pref="291" max="-2" attributes="0"/>
@@ -86,11 +93,6 @@
                                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btVoltar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btCadastrar" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
@@ -116,9 +118,8 @@
                       <Component id="txtAnoLancamento" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="boxDesenvolvedora" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -128,13 +129,17 @@
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <Component id="boxDistribuidora" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="14" max="32767" attributes="0"/>
-                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtProgresso" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -212,6 +217,7 @@
                           <Component id="radioFPS" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="radioMOBA" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="radioRPG" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioOUTRO" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="113" max="32767" attributes="0"/>
                   </Group>
@@ -227,6 +233,9 @@
                       <Component id="radioMMORPG" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="radioFPS" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="3" max="32767" attributes="0"/>
+                      <Component id="radioOUTRO" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -252,6 +261,11 @@
                 <Property name="text" type="java.lang.String" value="RPG"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JRadioButton" name="radioOUTRO">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="OUTRO"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -270,7 +284,7 @@
         <Component class="javax.swing.JComboBox" name="boxDistribuidora">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="9">
+              <StringArray count="10">
                 <StringItem index="0" value="Ubisoft"/>
                 <StringItem index="1" value="SEGA"/>
                 <StringItem index="2" value="NINTENDO"/>
@@ -280,6 +294,7 @@
                 <StringItem index="6" value="Konami"/>
                 <StringItem index="7" value="Sony"/>
                 <StringItem index="8" value="Microsoft"/>
+                <StringItem index="9" value="Outro"/>
               </StringArray>
             </Property>
           </Properties>
@@ -290,7 +305,7 @@
         <Component class="javax.swing.JComboBox" name="boxDesenvolvedora">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="9">
+              <StringArray count="10">
                 <StringItem index="0" value="Sony"/>
                 <StringItem index="1" value="Apple"/>
                 <StringItem index="2" value="Microsoft"/>
@@ -300,6 +315,7 @@
                 <StringItem index="6" value="NetEase"/>
                 <StringItem index="7" value="Electronic Arts"/>
                 <StringItem index="8" value="Take-two Interactive"/>
+                <StringItem index="9" value="Outro"/>
               </StringArray>
             </Property>
           </Properties>
@@ -341,6 +357,14 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCadastrarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/icon.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Este campo &#xe9; referente a porcentagem do seu progresso atual neste jogo (O campo aceita apenas n&#xfa;mero)"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
