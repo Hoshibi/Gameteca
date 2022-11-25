@@ -20,11 +20,6 @@ import model.Jogo;
  * @author tayna
  */
 public class EditarJogoView extends javax.swing.JFrame {
-
-    static void recebeNome(Jogo jogo){
-        txtNomeJogo.setText(String.valueOf(jogo.getNomeJogo()));
-        txtNomeJogo.requestFocus();
-    }
    
     private final EditarJogoController controller;
 
@@ -36,6 +31,8 @@ public class EditarJogoView extends javax.swing.JFrame {
         initComponents();
         controller = new EditarJogoController(this); 
     }
+    
+
     
     public void escolherGenero(){
         if (radioMOBA.isSelected()) {
@@ -50,11 +47,31 @@ public class EditarJogoView extends javax.swing.JFrame {
         if (radioFPS.isSelected()) {
             genero = radioFPS.getText();
         }
+        if (radioOUTRO.isSelected()) {
+            genero = radioOUTRO.getText();
+        }
+    }
+    
+    public void inserirGenero(String generoEdit){
+        if (generoEdit.equals("MOBA")) {
+            radioMOBA.setSelected(true);
+        }
+        if (generoEdit.equals("RPG")) {
+            radioRPG.setSelected(true);
+        }
+        if (generoEdit.equals("MMORPG")) {
+            radioMMORPG.setSelected(true);
+        }
+        if (generoEdit.equals("FPS")) {
+            radioFPS.setSelected(true);
+        }
+        if (generoEdit.equals("OUTRO")) {
+            radioOUTRO.setSelected(true);
+        }
     }
     
     public void comboBox(){
         desenvolvedora = boxDesenvolvedora.getSelectedItem().toString();
-        
         distribuidora = boxDistribuidora.getSelectedItem().toString();
     }
 
@@ -67,6 +84,8 @@ public class EditarJogoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -78,6 +97,7 @@ public class EditarJogoView extends javax.swing.JFrame {
         radioMMORPG = new javax.swing.JRadioButton();
         radioMOBA = new javax.swing.JRadioButton();
         radioRPG = new javax.swing.JRadioButton();
+        radioOUTRO = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         txtProgresso = new javax.swing.JTextField();
         boxDistribuidora = new javax.swing.JComboBox<>();
@@ -87,6 +107,7 @@ public class EditarJogoView extends javax.swing.JFrame {
         btVoltar = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btPesquisar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edição de Jogos");
@@ -124,6 +145,8 @@ public class EditarJogoView extends javax.swing.JFrame {
 
         radioRPG.setText("RPG");
 
+        radioOUTRO.setText("OUTRO");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -134,7 +157,8 @@ public class EditarJogoView extends javax.swing.JFrame {
                     .addComponent(radioMMORPG)
                     .addComponent(radioFPS)
                     .addComponent(radioMOBA)
-                    .addComponent(radioRPG))
+                    .addComponent(radioRPG)
+                    .addComponent(radioOUTRO))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -146,7 +170,10 @@ public class EditarJogoView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(radioMMORPG)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radioFPS))
+                .addComponent(radioFPS)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(radioOUTRO)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -164,6 +191,7 @@ public class EditarJogoView extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jLabel7.setText("Progresso Atual");
+        jLabel7.setToolTipText("");
 
         txtAnoLancamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +222,9 @@ public class EditarJogoView extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
+        jLabel3.setToolTipText("Este campo é referente a porcentagem do seu progresso atual neste jogo (O campo aceita apenas número)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -201,10 +232,27 @@ public class EditarJogoView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(boxDesenvolvedora, 0, 136, Short.MAX_VALUE)
+                                    .addComponent(boxDistribuidora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -215,69 +263,55 @@ public class EditarJogoView extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(txtAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(55, 55, 55)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(35, 35, 35)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(boxDistribuidora, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(boxDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(txtProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(150, 150, 150)
-                                        .addComponent(jLabel7))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btVoltar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btSalvar)))
-                        .addGap(0, 31, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGap(18, 18, 18)
+                                .addComponent(btSalvar))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(29, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(txtNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(boxDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(boxDistribuidora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(boxDistribuidora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvar)
-                    .addComponent(btVoltar))
-                .addGap(33, 33, 33))
+                        .addComponent(txtProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btVoltar)
+                            .addComponent(btSalvar))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -294,28 +328,35 @@ public class EditarJogoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeJogoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeJogoActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+        Jogo jogo = new Jogo();
 
-    private void txtProgressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProgressoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProgressoActionPerformed
+        try{
+            jogo.setNomeJogo(txtNomeJogo.getText());
+            //Connection conexao = new Conexao().getConnection();
+            JogoDAO dao = new JogoDAO();
 
-    private void txtAnoLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnoLancamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAnoLancamentoActionPerformed
+            if(dao.pesquisaJogo(jogo)){
+                if(jogo != null){
+                    //pega os dados armazenados nas variaveis e insere nos campos.
+                    inserirGenero(jogo.getGeneroJogo());
+                    txtAnoLancamento.setText(Integer.toString(jogo.getAnoLancamentoJogo()));
+                    boxDesenvolvedora.setSelectedItem(jogo.getDesenvolvedoraJogo());
+                    boxDistribuidora.setSelectedItem(jogo.getDistribuidoraJogo());
+                    txtProgresso.setText(Float.toString(jogo.getProgressoJogo()));
+                }
+            }
 
-    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        MenuView tela = new MenuView();
-        tela.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btVoltarActionPerformed
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Erro ao pesquisar jogo" +ex);
+            //Logger.getLogger(EditarJogoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         escolherGenero();
         comboBox();
-        
+
         try{
             controller.editarJogo();
         } catch (SQLException ex) {
@@ -323,30 +364,23 @@ public class EditarJogoView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
-    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        Jogo jogo = new Jogo();
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        MenuView tela = new MenuView();
+        tela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btVoltarActionPerformed
 
-        try{
-            jogo.setNomeJogo(txtNomeJogo.getText());
-            //Connection conexao = new Conexao().getConnection();           
-            JogoDAO dao = new JogoDAO();
-            
-            if(dao.pesquisaJogo(jogo)){
-                if(jogo != null){
-                    //pega os dados armazenados nas variaveis e insere nos campos.
-               //?  escolherGenero().setText(jogo.getGeneroJogo());
-                    txtAnoLancamento.setText(Integer.toString(jogo.getAnoLancamentoJogo()));
-                    boxDesenvolvedora.setSelectedItem(jogo.getDesenvolvedoraJogo());
-                    boxDistribuidora.setSelectedItem(jogo.getDistribuidoraJogo());
-                    txtProgresso.setText(Float.toString(jogo.getProgressoJogo()));
-                }
-            }
-           
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Erro ao pesquisar jogo" +ex);
-            //Logger.getLogger(EditarJogoView.class.getName()).log(Level.SEVERE, null, ex);
-        }      
-    }//GEN-LAST:event_btPesquisarActionPerformed
+    private void txtAnoLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnoLancamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnoLancamentoActionPerformed
+
+    private void txtProgressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProgressoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProgressoActionPerformed
+
+    private void txtNomeJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeJogoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeJogoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,18 +448,22 @@ public class EditarJogoView extends javax.swing.JFrame {
     private javax.swing.JButton btVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JRadioButton radioFPS;
     private javax.swing.JRadioButton radioMMORPG;
     private javax.swing.JRadioButton radioMOBA;
+    private javax.swing.JRadioButton radioOUTRO;
     private javax.swing.JRadioButton radioRPG;
     private javax.swing.JTextField txtAnoLancamento;
-    static javax.swing.JTextField txtNomeJogo;
+    private javax.swing.JTextField txtNomeJogo;
     private javax.swing.JTextField txtProgresso;
     // End of variables declaration//GEN-END:variables
 

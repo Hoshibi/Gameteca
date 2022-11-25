@@ -35,14 +35,10 @@ public class EditarJogoController {
             String desenvolvedoraJogo = view.getDesenvolvedora();
             float progressoJogo = Float.parseFloat(view.getTxtProgresso().getText());
 
-            Jogo jog = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
-            //Jogo jog = new Jogo();
+            Jogo jogo = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
+            JogoDAO jogoDao = new JogoDAO();  
             
-            //Connection conexao = new Conexao().getConnection();           
-            //JogoDAO jogoDao = new JogoDAO(conexao);  
-            JogoDAO jogoDao = new JogoDAO();
-            jogoDao.editar(jog);
-          
+            jogoDao.editar(jogo);
             JOptionPane.showMessageDialog(null, "Jogo atualizado com sucesso");
                        
         }catch(SQLException ex){
