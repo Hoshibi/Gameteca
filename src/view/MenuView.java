@@ -45,7 +45,6 @@ public class MenuView extends javax.swing.JFrame {
                         j.getDesenvolvedoraJogo(),
                         j.getDistribuidoraJogo(),
                         j.getProgressoJogo()
-                        
                     });
                 }
                                
@@ -223,21 +222,25 @@ public class MenuView extends javax.swing.JFrame {
         //Jogo jogo = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
         
         EditarJogoView tela = new EditarJogoView();
-        tela.setVisible(true); // abre a tela de edição de jogos
-
         int linha = TabelaJogo.getSelectedRow();  //pega a linha selecionada da tabela e passa para a tela de edição.
+        
+        if(linha > 0) {
+            tela.setVisible(true); // abre a tela de edição de jogo
+            jogo.setNomeJogo(TabelaJogo.getValueAt(linha,0).toString()); //passa o nome do jogo para a tela de edição
 
-        jogo.setNomeJogo(TabelaJogo.getValueAt(linha,0).toString()); //passa o nome do jogo para a tela de edição
-
-        EditarJogoView.recebeNome(jogo); 
-        this.dispose();
+            tela.getTxtNomeJogo().setText(String.valueOf(jogo.getNomeJogo()));
+            tela.getTxtNomeJogo().requestFocus();
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null,"Selecione um jogo da lista para editar" );
+        }
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
             CadastroJogoView tela = new CadastroJogoView();
             tela.setVisible(true);
             dispose();
-        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void MenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemSairActionPerformed
