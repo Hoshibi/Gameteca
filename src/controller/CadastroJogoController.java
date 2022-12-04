@@ -30,18 +30,20 @@ public class CadastroJogoController {
         try{
             String nomeJogo = view.getTxtNomeJogo().getText();
             String generoJogo = view.getGenero();
-            int anoLancamento = Integer.parseInt(view.getTxtAnoLancamento().getText());
+            String anoLancamentoTeste = view.getTxtAnoLancamento().getText();
             String distribuidoraJogo = view.getDistribuidora();
             String desenvolvedoraJogo = view.getDesenvolvedora();
-            float progressoJogo = Float.parseFloat(view.getTxtProgresso().getText());
-
-            Jogo jog = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
-
+            String progressoJogoTeste = view.getTxtProgresso().getText();
+            
             //validação dos campos
-            if((nomeJogo.isEmpty()) || (generoJogo.isEmpty()) || (distribuidoraJogo.isEmpty()) || (desenvolvedoraJogo.isEmpty())){
-                JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+            if((nomeJogo.isEmpty()) || (generoJogo.isEmpty()) || (distribuidoraJogo.isEmpty()) || (desenvolvedoraJogo.isEmpty()) || anoLancamentoTeste.isEmpty() || progressoJogoTeste.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Há campos vazios, é necessário o preenchimento de todos");
             }
             else{
+                int anoLancamento = Integer.parseInt(view.getTxtAnoLancamento().getText());
+                float progressoJogo = Float.parseFloat(view.getTxtProgresso().getText());
+                
+                Jogo jog = new Jogo(nomeJogo, generoJogo, anoLancamento, desenvolvedoraJogo, distribuidoraJogo, progressoJogo);
                 //Connection conexao = new Conexao().getConnection();           
                 JogoDAO jogoDao = new JogoDAO();            
                 jogoDao.insert(jog);

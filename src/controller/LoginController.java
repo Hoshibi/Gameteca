@@ -28,10 +28,10 @@ public class LoginController {
 
     public void autenticar() throws SQLException {
         
-        String usuario = view.getTxtLogin().getText();
+        String email = view.getTxtLogin().getText();
         String senha = view.getTxtSenha().getText();
         
-        Usuario userAutenticar = new Usuario(usuario, senha);
+        Usuario userAutenticar = new Usuario(email, senha);
         
         Connection conexao = new Conexao().getConnection();
         UsuarioDAO usuarioDao = new UsuarioDAO(conexao);

@@ -30,8 +30,7 @@ public class Usuario {
     }
     
     public Usuario(String usuario, String senha, String nome, String email, int telefone, String cpf) {
-        
-        
+       
         this.usuario = usuario;
         this.senha = senha;
         this.nome = nome;
@@ -39,17 +38,11 @@ public class Usuario {
         this.telefone = telefone;
         this.cpf = cpf;
     }
-    
 
-    
-
-    public Usuario(String usuario, String senha) {
-        this.usuario = usuario;
+    public Usuario(String email, String senha) {
+        this.email = email;
         this.senha = senha;
     }
-
-    
-    
     
     public int getId() {
         return id;

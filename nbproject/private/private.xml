@@ -5,11 +5,11 @@
         <group>
             <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/view/FormCadastroView.java</file>
             <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/view/LoginView.java</file>
-            <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/view/MenuView.java</file>
-            <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/DAO/JogoDAO.java</file>
+            <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/controller/CadastroJogoController.java</file>
+            <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/view/ExcluirJogoView.java</file>
             <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/view/CadastroJogoView.java</file>
+            <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/view/ExcluirUsuarioView.java</file>
             <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/view/EditarJogoView.java</file>
-            <file>file:/C:/Users/tanys/ProjetosUTF/Gameteca/src/controller/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

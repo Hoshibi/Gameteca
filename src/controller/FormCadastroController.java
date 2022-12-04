@@ -33,16 +33,20 @@ public class FormCadastroController {
             String senha = view.getTxtSenha().getText();
             String nome = view.getTxtNome().getText();
             String email = view.getTxtEmail().getText();
-            int tel = Integer.parseInt(view.getTxtTelefone().getText());
+            String telTeste = view.getTxtTelefone().getText();
             String cpf = view.getTxtCPF().getText();
 
-            Usuario user = new Usuario(usuario, senha, nome, email, tel, cpf);
+            
         
             //validação dos campos
-            if((usuario.isEmpty()) || (senha.isEmpty()) || (nome.isEmpty()) || (email.isEmpty()) || (cpf.isEmpty())){
+            if((usuario.isEmpty()) || (senha.isEmpty()) || (nome.isEmpty()) || (email.isEmpty()) || (cpf.isEmpty()) || telTeste.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
             }
             else{
+                int tel = Integer.parseInt(view.getTxtTelefone().getText());
+                
+                Usuario user = new Usuario(usuario, senha, nome, email, tel, cpf);
+                
                 Connection conexao = new Conexao().getConnection();
                 UsuarioDAO usuarioDao = new UsuarioDAO(conexao);
                 usuarioDao.insert(user);
@@ -51,7 +55,13 @@ public class FormCadastroController {
             }
         
         }catch(SQLException ex){
-            Logger.getLogger(FormCadastroView.class.getName()).log(Level.SEVERE, null, ex);
+            String type = ex.getSQLState();
+            if( type.equals("23505")) {
+                JOptionPane.showMessageDialog(null, "Já existe um usuário com esse email. \nPor favor, insira outro email para dar prosseguimento no cadastro.");
+            }else{
+                JOptionPane.showMessageDialog(null, "Erro: " + ex );                
+                Logger.getLogger(FormCadastroView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }      
     }
 }

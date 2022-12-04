@@ -38,15 +38,13 @@ public class UsuarioDAO {
 
     //Método Autenticar    
     public boolean autenticarUsuario(Usuario user) throws SQLException {
-        String sql = "select * from usuario where user_usuario = '"+user.getUsuario()+"' and senha_usuario = '"+user.getSenha()+"'";
+        String sql = "select * from usuario where email_usuario = '"+user.getEmail()+"' and senha_usuario = '"+user.getSenha()+"'";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.execute();
         
         ResultSet resultSet = statement.getResultSet();
         
        return resultSet.next();
-        
-        
     }
     
     // Método Excluir
