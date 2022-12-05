@@ -55,7 +55,7 @@ public class ExcluirUsuarioView extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jLabel5.setText("CPF do usuário");
+        jLabel5.setText("Insira o email da conta que deseja excluir");
 
         txtCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

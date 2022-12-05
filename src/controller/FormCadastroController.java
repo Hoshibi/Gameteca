@@ -51,9 +51,15 @@ public class FormCadastroController {
             String tel = view.getTxtTelefone().getText();
             String cpf = view.getTxtCPF().getText();
             
+            view.setErrorName().setText("");
+            view.setErrorEmail().setText("");
+            view.setErrorUser().setText("");
+            view.setErrorPassword().setText("");
+            view.setErrorCPF().setText("");
+            view.setErrorPhone().setText("");
+
             //validação dos campos
             if((usuario.isEmpty()) || (senha.isEmpty()) || (nome.isEmpty()) || (email.isEmpty()) || (tel.equals("(  )      -    ")) || (cpf.equals("   .   .   -  ")) ){
-                JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios. CPF: "+cpf+" / Tel : " + tel);
                 if(nome.isEmpty()) {
                     view.setErrorName().setText("Campo nome é obrigatório");
                 }

@@ -39,7 +39,6 @@ public class CadastroJogoController {
             
             //validação dos campos
             if((nomeJogo.isEmpty()) || (generoJogo.isEmpty()) || (distribuidoraJogo.isEmpty()) || (desenvolvedoraJogo.isEmpty()) || anoLancamentoTeste.equals("    ") || progressoJogoTeste.isEmpty()){
-                JOptionPane.showMessageDialog(null, "Há campos vazios, é necessário o preenchimento de todos");
                 if(nomeJogo.isEmpty()) {
                     view.setErrorName().setText("Campo nome é obrigatório");
                 }

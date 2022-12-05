@@ -21,7 +21,7 @@ public class UsuarioDAO {
     private PreparedStatement pstdados = null;
     
     //sql
-    private static final String sqlexcluir = "DELETE FROM usuario WHERE cpf_usuario = ?";   
+    private static final String sqlexcluir = "DELETE FROM usuario WHERE email_usuario = ?";   
 
     public UsuarioDAO(Connection connection) {
         this.connection = connection;
