@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Usuario;
 import view.FormCadastroView;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -27,31 +29,77 @@ public class FormCadastroController {
         this.view = view;
     }
     
+    public static boolean isValidEmailAddressRegex(String email) {
+        boolean isEmailIdValid = false;
+        if (email != null && email.length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(email);
+            if (matcher.matches()) {
+                isEmailIdValid = true;
+            }
+        }
+        return isEmailIdValid;
+    }
+    
     public void salvaUsuario(){
         try{
             String usuario = view.getTxtUsuario().getText();
             String senha = view.getTxtSenha().getText();
             String nome = view.getTxtNome().getText();
             String email = view.getTxtEmail().getText();
-            String telTeste = view.getTxtTelefone().getText();
+            String tel = view.getTxtTelefone().getText();
             String cpf = view.getTxtCPF().getText();
-
             
-        
             //validação dos campos
-            if((usuario.isEmpty()) || (senha.isEmpty()) || (nome.isEmpty()) || (email.isEmpty()) || (cpf.isEmpty()) || telTeste.isEmpty()){
-                JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
-            }
+            if((usuario.isEmpty()) || (senha.isEmpty()) || (nome.isEmpty()) || (email.isEmpty()) || (tel.equals("(  )      -    ")) || (cpf.equals("   .   .   -  ")) ){
+                JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios. CPF: "+cpf+" / Tel : " + tel);
+                if(nome.isEmpty()) {
+                    view.setErrorName().setText("Campo nome é obrigatório");
+                }
+                if(email.isEmpty()) {
+                    view.setErrorEmail().setText("Campo email é obrigatório");
+                }
+                if(usuario.isEmpty()) {
+                    view.setErrorUser().setText("Campo usuário é obrigatório");
+                }
+                if(senha.isEmpty()) {
+                    view.setErrorPassword().setText("Campo senha é obrigatório");
+                }
+                if(cpf.equals("   .   .   -  ")) {
+                    view.setErrorCPF().setText("Campo CPF é obrigatório");
+                }
+                if(tel.equals("(  )      -    ")) {
+                    view.setErrorPhone().setText("Campo telefone é obrigatório");
+                }
+            } 
             else{
-                int tel = Integer.parseInt(view.getTxtTelefone().getText());
-                
-                Usuario user = new Usuario(usuario, senha, nome, email, tel, cpf);
-                
-                Connection conexao = new Conexao().getConnection();
-                UsuarioDAO usuarioDao = new UsuarioDAO(conexao);
-                usuarioDao.insert(user);
+                boolean resultValidation = isValidEmailAddressRegex(email);
 
-                JOptionPane.showMessageDialog(null, "Usuario salvo com sucesso");
+                if(resultValidation == true) {
+                    view.setErrorName().setText("");
+                    view.setErrorEmail().setText("");
+                    view.setErrorUser().setText("");
+                    view.setErrorPassword().setText("");
+                    view.setErrorCPF().setText("");
+                    view.setErrorPhone().setText("");
+                    
+                    Usuario user = new Usuario(usuario, senha, nome, email, tel, cpf);
+
+                    Connection conexao = new Conexao().getConnection();
+                    UsuarioDAO usuarioDao = new UsuarioDAO(conexao);
+                    usuarioDao.insert(user);
+
+                    JOptionPane.showMessageDialog(null, "Usuario salvo com sucesso");
+                }else {
+                    view.setErrorName().setText("");
+                    view.setErrorUser().setText("");
+                    view.setErrorPassword().setText("");
+                    view.setErrorCPF().setText("");
+                    view.setErrorPhone().setText("");
+                    
+                    view.setErrorEmail().setText("Formato do e-mail inválido");
+                }
             }
         
         }catch(SQLException ex){

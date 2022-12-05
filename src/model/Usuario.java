@@ -15,10 +15,10 @@ public class Usuario {
     private String senha;
     private String nome;
     private String email;
-    private int telefone;
+    private String telefone;
     private String cpf;
 
-    public Usuario(int id, String usuario, String senha, String nome, String email, int telefone, String cpf) {
+    public Usuario(int id, String usuario, String senha, String nome, String email, String telefone, String cpf) {
         
         this.id = id;
         this.usuario = usuario;
@@ -29,7 +29,7 @@ public class Usuario {
         this.cpf = cpf;
     }
     
-    public Usuario(String usuario, String senha, String nome, String email, int telefone, String cpf) {
+    public Usuario(String usuario, String senha, String nome, String email, String telefone, String cpf) {
        
         this.usuario = usuario;
         this.senha = senha;
@@ -43,6 +43,7 @@ public class Usuario {
         this.email = email;
         this.senha = senha;
     }
+
     
     public int getId() {
         return id;
@@ -84,11 +85,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
